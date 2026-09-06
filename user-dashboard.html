@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Client Portal | STACKLY Capital Advisory</title>
+  <!-- Google Fonts - Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      overflow-x: clip
+    }
+
+    :root {
+      --bg: #0b0c10;
+      --sidebar-bg: #121316;
+      --card-bg: #1a1b1f;
+      --header-bg: #121316;
+      --accent: #d90429;
+      --accent-rgb: 217, 4, 41;
+      --accent2: #ef233c;
+      --red: #d90429;
+      --green: #2ecc71;
+      --blue: #3498db;
+      --purple: #9b59b6;
+      --gold: #f39c12;
+      --text: #ffffff;
+      --text2: rgba(255, 255, 255, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      --radius: 12px;
+      --sidebar-w: 260px;
+      --header-h: 70px;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: clip;
+      width: 100%
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: var(--sidebar-w);
+      right: 0;
+      height: var(--header-h);
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 100;
+      transition: var(--transition)
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: var(--transition)
+    }
+
+    .page-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem
+    }
+
+    .icon-btn {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text2);
+      cursor: pointer;
+      transition: var(--transition)
+    }
+
+    .icon-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    .badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--red);
+      color: #fff;
+      font-size: .6rem;
+      font-weight: 700;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .4rem .8rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition)
+    }
+
+    .user-profile:hover {
+      border-color: var(--accent)
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .85rem;
+      color: #ffffff
+    }
+
+    .user-name {
+      font-size: .85rem;
+      font-weight: 600
+    }
+
+    .user-role {
+      font-size: .7rem;
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      z-index: 200;
+      transition: var(--transition);
+      overflow-y: auto
+    }
+
+    .sidebar-logo {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .sidebar-logo img {
+      height: 36px;
+      width: auto
+    }
+
+    .sidebar-close {
+      display: none;
+      color: var(--text2);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 4px
+    }
+
+    .sidebar-close:hover {
+      color: var(--text)
+    }
+
+    .sidebar-section-label {
+      padding: .8rem 1.5rem .4rem;
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text2)
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .85rem 1.5rem;
+      color: var(--text2);
+      font-size: .9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      border-left: 3px solid transparent;
+      position: relative
+    }
+
+    .nav-item:hover {
+      background: rgba(217, 4, 41, .06);
+      color: var(--text);
+      border-left-color: rgba(217, 4, 41, .3)
+    }
+
+    .nav-item.active {
+      background: rgba(217, 4, 41, .1);
+      color: var(--accent2);
+      border-left-color: var(--accent)
+    }
+
+    .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 1.05rem;
+      flex-shrink: 0
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 1rem;
+      border-top: 1px solid var(--border)
+    }
+
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .75rem 1rem;
+      border-radius: 8px;
+      color: #d90429;
+      font-size: .875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%
+    }
+
+    .logout-btn:hover {
+      background: rgba(217, 4, 41, .1)
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 150;
+      backdrop-filter: blur(4px)
+    }
+
+    /* MAIN */
+    .main {
+      margin-left: var(--sidebar-w);
+      margin-top: var(--header-h);
+      padding: 2rem;
+      min-height: calc(100vh - var(--header-h));
+      width: calc(100% - var(--sidebar-w));
+      overflow-x: hidden
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn .4s ease both;
+      overflow-x: hidden
+    }
+
+    .section.active {
+      display: block
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* CARDS */
+    .section-header {
+      margin-bottom: 1.75rem
+    }
+
+    .section-header h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: .25rem;
+      color: #ffffff
+    }
+
+    .section-header p {
+      color: var(--text2);
+      font-size: .9rem
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.75rem
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: rgba(217, 4, 41, .2)
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--card-accent, rgba(217, 4, 41, .06));
+      transform: translate(20px, -20px)
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--card-icon-bg, rgba(217, 4, 41, .15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1rem
+    }
+
+    .card-label {
+      font-size: .78rem;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .3rem;
+      font-weight: 600
+    }
+
+    .card-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: .5rem
+    }
+
+    .card-desc {
+      font-size: .78rem;
+      color: var(--text2)
+    }
+
+    /* WELCOME BANNER */
+    .welcome-banner {
+      background: linear-gradient(135deg, rgba(217, 4, 41, 0.2), rgba(18, 19, 22, 0.9));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .welcome-banner::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 180px;
+      height: 100%;
+      background: radial-gradient(circle, rgba(217, 4, 41, 0.18) 0%, rgba(0, 0, 0, 0) 70%)
+    }
+
+    .welcome-text h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: .5rem
+    }
+
+    .welcome-text p {
+      color: var(--text2);
+      font-size: .95rem;
+      max-width: 650px;
+      line-height: 1.6
+    }
+
+    .welcome-badge {
+      padding: .6rem 1.25rem;
+      background: rgba(243, 156, 18, 0.15);
+      border: 1px solid rgba(243, 156, 18, 0.3);
+      color: var(--gold);
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: .85rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+
+    /* GRID LAYOUTS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.75rem
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.75rem
+    }
+
+    .grid-2-1 {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.75rem
+    }
+
+    /* CHART CARD */
+    .chart-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      min-width: 0;
+      overflow: hidden
+    }
+
+    .chart-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem
+    }
+
+    .chart-card-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700
+    }
+
+    .chart-wrap {
+      position: relative;
+      height: 280px;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden
+    }
+
+    .chart-wrap canvas {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 280px;
+      max-width: 100%
+    }
+
+    /* CLIENT VIP WIDGET */
+    .donor-card-widget {
+      background: linear-gradient(135deg, #1f1a1d, #111215);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      max-width: 400px;
+      width: 100%;
+      margin: 0 auto
+    }
+
+    .donor-card-logo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem
+    }
+
+    .donor-card-logo img {
+      height: 30px
+    }
+
+    .donor-card-blood {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 0 15px rgba(217, 4, 41, 0.5)
+    }
+
+    .donor-card-details {
+      margin-bottom: 1.5rem
+    }
+
+    .donor-card-label {
+      font-size: .65rem;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: .2rem
+    }
+
+    .donor-card-val {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .8rem
+    }
+
+    .donor-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1rem
+    }
+
+    .qr-code-placeholder {
+      background: #ffffff;
+      padding: 4px;
+      border-radius: 6px;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .qr-code-placeholder i {
+      color: #000000;
+      font-size: 2.8rem
+    }
+
+    /* MOBILE GRID HELPERS */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch
+    }
+
+    .table-responsive::-webkit-scrollbar {
+      height: 6px
+    }
+
+    .table-responsive::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02)
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px
+    }
+
+    .table-responsive::-webkit-scrollbar-thumb:hover {
+      background: var(--accent)
+    }
+
+    /* FORMS */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.75rem
+    }
+
+    .form-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      padding-bottom: .75rem;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem
+    }
+
+    .form-group label {
+      display: block;
+      font-size: .8rem;
+      color: var(--text2);
+      margin-bottom: .4rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-weight: 600
+    }
+
+    .form-control {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      color: var(--text);
+      font-size: .9rem;
+      outline: none;
+      transition: var(--transition);
+      font-family: inherit
+    }
+
+    .form-control:focus {
+      border-color: var(--accent)
+    }
+
+    .form-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: .4rem
+    }
+
+    .form-checkbox-row input {
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px
+    }
+
+    .form-checkbox-row span {
+      font-size: .85rem;
+      color: var(--text2)
+    }
+
+    /* TABLE */
+    .table-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1.75rem
+    }
+
+    .table-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .table-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700
+    }
+
+    .btn {
+      padding: .55rem 1.25rem;
+      border-radius: 8px;
+      font-size: .8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition)
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: none
+    }
+
+    .btn-primary:hover {
+      background: var(--accent2)
+    }
+
+    .btn-outline {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text2)
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent)
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    th {
+      background: var(--bg);
+      color: var(--text2);
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      padding: .85rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border)
+    }
+
+    td {
+      padding: .9rem 1.5rem;
+      font-size: .875rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle
+    }
+
+    tr:last-child td {
+      border-bottom: none
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, .02)
+    }
+
+    /* STATUS BADGES */
+    .badge-status {
+      padding: .3rem .75rem;
+      border-radius: 20px;
+      font-size: .72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .badge-active {
+      background: rgba(46, 204, 113, .15);
+      color: #2ecc71
+    }
+
+    .badge-pending {
+      background: rgba(230, 126, 34, .15);
+      color: #e67e22
+    }
+
+    .badge-done {
+      background: rgba(46, 204, 113, .15);
+      color: #2ecc71
+    }
+
+    .badge-progress {
+      background: rgba(52, 152, 219, .15);
+      color: #3498db
+    }
+
+    .badge-critical {
+      background: rgba(217, 4, 41, 0.15);
+      color: var(--accent2)
+    }
+
+    /* ACTIVITY LIST */
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: .85rem
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      padding: .75rem 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .activity-item:last-child {
+      border-bottom: none
+    }
+
+    .activity-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      flex-shrink: 0
+    }
+
+    .activity-text {
+      flex: 1
+    }
+
+    .activity-text strong {
+      font-size: .875rem;
+      display: block;
+      margin-bottom: .2rem
+    }
+
+    .activity-text span {
+      font-size: .78rem;
+      color: var(--text2)
+    }
+
+    .activity-time {
+      font-size: .72rem;
+      color: var(--text2);
+      white-space: nowrap
+    }
+
+    /* SETTINGS CARD & GRID ALIGNMENT */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .settings-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+
+    .settings-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      padding-bottom: .75rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .75rem 0;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .toggle-row:last-child {
+      border-bottom: none
+    }
+
+    .toggle-info strong {
+      font-size: .875rem;
+      display: block;
+      margin-bottom: .2rem
+    }
+
+    .toggle-info span {
+      font-size: .78rem;
+      color: var(--text2)
+    }
+
+    .toggle {
+      position: relative;
+      width: 42px;
+      height: 22px;
+      flex-shrink: 0
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border);
+      border-radius: 22px;
+      cursor: pointer;
+      transition: var(--transition)
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      top: 3px;
+      left: 3px;
+      transition: var(--transition)
+    }
+
+    .toggle input:checked+.toggle-slider {
+      background: var(--accent)
+    }
+
+    .toggle input:checked+.toggle-slider::before {
+      transform: translateX(20px)
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1200px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:992px) {
+      :root {
+        --sidebar-w: 0px
+      }
+
+      .sidebar {
+        transform: translateX(-260px);
+        width: 260px
+      }
+
+      .sidebar.open {
+        transform: translateX(0)
+      }
+
+      .sidebar-close {
+        display: block
+      }
+
+      .sidebar-overlay.open {
+        display: block
+      }
+
+      .header {
+        left: 0
+      }
+
+      .hamburger {
+        display: flex
+      }
+
+      .main {
+        overflow-x: hidden
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-2-1 {
+        grid-template-columns: minmax(0, 1fr)
+      }
+
+      .grid-2>*,
+      .grid-3>*,
+      .grid-2-1>* {
+        min-width: 0
+      }
+
+      .settings-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:768px) {
+      .main {
+        padding: 1rem
+      }
+
+      .chart-wrap {
+        height: 220px
+      }
+
+      .chart-wrap canvas {
+        max-height: 220px
+      }
+
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      table td,
+      table th {
+        white-space: nowrap
+      }
+    }
+
+    @media(max-width:576px) {
+      .cards-grid {
+        grid-template-columns: 1fr
+      }
+
+      .header {
+        padding: 0 0.75rem;
+        gap: 0.5rem
+      }
+
+      .page-title {
+        display: none
+      }
+
+      .user-profile-info {
+        display: none
+      }
+
+      .user-profile {
+        padding: 0.3rem
+      }
+
+      .header-right {
+        gap: 0.6rem
+      }
+
+      td,
+      th {
+        padding: .7rem .8rem
+      }
+
+      .welcome-banner {
+        padding: 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <a href="./user-dashboard.html" style="display:flex;align-items:center;gap:0.5rem">
+        <img src="org-logos_324746.webp" alt="Stackly Logo" style="height:32px">
+      </a>
+      <span class="sidebar-close" onclick="closeSidebar()"><i class="fa-solid fa-xmark"></i></span>
+    </div>
+    <div class="sidebar-section-label">Private Investor Portal</div>
+    <nav id="sidebarNav">
+      <div class="nav-item active" onclick="showSection('dashboard',this)"><span class="nav-icon"><i
+            class="fa-solid fa-chart-line"></i></span>Portfolio Overview</div>
+      <div class="nav-item" onclick="showSection('portfolio',this)"><span class="nav-icon"><i
+            class="fa-solid fa-vault"></i></span>Holdings & Capital</div>
+      <div class="nav-item" onclick="showSection('advisory',this)"><span class="nav-icon"><i
+            class="fa-solid fa-user-tie"></i></span>Wealth Advisory</div>
+      <div class="nav-item" onclick="showSection('statements',this)"><span class="nav-icon"><i
+            class="fa-solid fa-file-invoice-dollar"></i></span>Audit & Reports</div>
+      <div class="nav-item" onclick="showSection('settings',this)"><span class="nav-icon"><i
+            class="fa-solid fa-sliders"></i></span>Client Settings</div>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="window.location.href='login.html'"><i
+          class="fa-solid fa-right-from-bracket"></i> &nbsp;Sign Out</button>
+    </div>
+  </aside>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="hamburger" onclick="openSidebar()"><span></span><span></span><span></span></div>
+      <div class="page-title" id="pageTitle">Portfolio Overview</div>
+    </div>
+
+    <div class="header-right">
+      <div class="icon-btn" onclick="goto404()"><i class="fa-solid fa-bell"></i><span class="badge">3</span></div>
+      <div class="user-profile" onclick="goto404()">
+        <div class="user-avatar" id="headerAvatar">SJ</div>
+        <div class="user-profile-info">
+          <div class="user-name" id="headerUserName">Sarah Jenkins</div>
+          <div class="user-role">Private Client Tier</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main" id="mainContent">
+
+    <!-- DASHBOARD Overview -->
+    <div class="section active" id="sec-dashboard">
+      <div class="welcome-banner">
+        <div class="welcome-text">
+          <h1 id="welcomeTitle">Welcome back, Sarah Jenkins</h1>
+          <p>Your capital allocation strategy is currently outperforming benchmark indices. Your next 1-on-1 private
+            wealth audit is scheduled for <strong>September 15, 2026</strong> with lead architect <strong>Dr. Rajesh
+              Kumar</strong>.</p>
+        </div>
+        <div class="welcome-badge">
+          <i class="fa-solid fa-crown"></i> HNW Elite Account
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="stat-card" style="--card-icon-bg:rgba(217,4,41,.15);--card-accent:rgba(217,4,41,.06)">
+          <div class="card-icon" style="color:var(--accent)"><i class="fa-solid fa-wallet"></i></div>
+          <div class="card-label">Total Portfolio Value (AUM)</div>
+          <div class="card-value">$4,850,000</div>
+          <div class="card-desc" style="color:#2ecc71;font-weight:600"><i class="fa-solid fa-arrow-trend-up"></i> +12.4%
+            Annualized Return</div>
+        </div>
+        <div class="stat-card" style="--card-icon-bg:rgba(46,204,113,.15);--card-accent:rgba(46,204,113,.06)">
+          <div class="card-icon" style="color:#2ecc71"><i class="fa-solid fa-sack-dollar"></i></div>
+          <div class="card-label">YTD Net Profit</div>
+          <div class="card-value">$642,150</div>
+          <div class="card-desc">Realized Dividends & Capital Gains</div>
+        </div>
+        <div class="stat-card" style="--card-icon-bg:rgba(52,152,219,.15);--card-accent:rgba(52,152,219,.06)">
+          <div class="card-icon" style="color:#3498db"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="card-label">Tax Shielded Wealth</div>
+          <div class="card-value">$2,100,000</div>
+          <div class="card-desc">Discretionary Trust & OECD Compliant</div>
+        </div>
+        <div class="stat-card" style="--card-icon-bg:rgba(243,156,18,.15);--card-accent:rgba(243,156,18,.06)">
+          <div class="card-icon" style="color:var(--gold)"><i class="fa-solid fa-handshake"></i></div>
+          <div class="card-label">Active Private Deals</div>
+          <div class="card-value">4 Funds</div>
+          <div class="card-desc">Corporate M&A & Private Equity</div>
+        </div>
+      </div>
+
+      <div class="grid-2-1">
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Portfolio Value & Yield Progression</h3>
+          </div>
+          <div class="chart-wrap"><canvas id="userGrowthChart"></canvas></div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Asset Allocation Breakdown</h3>
+          </div>
+          <div class="chart-wrap"><canvas id="assetDonut"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid-2-1">
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Recent Capital Payouts & Yield Disseminations</h3>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Investment Fund</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#TX-98421</td>
+                  <td>Global M&A Growth Fund II</td>
+                  <td>Aug 28, 2026</td>
+                  <td>$48,500.00</td>
+                  <td><span class="badge-status badge-done">Completed Payout</span></td>
+                </tr>
+                <tr>
+                  <td>#TX-87104</td>
+                  <td>Offshore Real Estate Trust</td>
+                  <td>Aug 14, 2026</td>
+                  <td>$32,400.00</td>
+                  <td><span class="badge-status badge-done">Completed Payout</span></td>
+                </tr>
+                <tr>
+                  <td>#TX-76290</td>
+                  <td>Private Debt Yield Strategy</td>
+                  <td>Jul 30, 2026</td>
+                  <td>$29,150.00</td>
+                  <td><span class="badge-status badge-done">Completed Payout</span></td>
+                </tr>
+                <tr>
+                  <td>#TX-65112</td>
+                  <td>OECD Tax Shielding Pool</td>
+                  <td>Jul 15, 2026</td>
+                  <td>$115,000.00</td>
+                  <td><span class="badge-status badge-done">Reinvested</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-card-header">
+            <h3>Advisory Market Bulletins</h3>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-dot" style="background:rgba(46,204,113,.15);color:#2ecc71"><i
+                  class="fa-solid fa-arrow-trend-up"></i></div>
+              <div class="activity-text">
+                <strong>Quarterly Dividend Declared</strong>
+                <span>+8.4% yield payout scheduled for Q3</span>
+              </div>
+              <div class="activity-time">Today</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:rgba(217,4,41,.15);color:var(--accent)"><i
+                  class="fa-solid fa-shield-halved"></i></div>
+              <div class="activity-text">
+                <strong>Tax Shield Audit Approved</strong>
+                <span>OECD Compliance certificate updated</span>
+              </div>
+              <div class="activity-time">Aug 24</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot" style="background:rgba(52,152,219,.15);color:#3498db"><i
+                  class="fa-solid fa-building-columns"></i></div>
+              <div class="activity-text">
+                <strong>M&A Deal Closing</strong>
+                <span>Tech Acquisition Fund round finalized</span>
+              </div>
+              <div class="activity-time">Aug 18</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTFOLIO & HOLDINGS -->
+    <div class="section" id="sec-portfolio">
+      <div class="section-header">
+        <h2>Portfolio & Capital Holdings</h2>
+        <p>View your active capital allocations, yield performance, and liquidity management.</p>
+      </div>
+
+      <div class="grid-2-1">
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Active Asset Holdings</h3>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Asset Name</th>
+                  <th>Category</th>
+                  <th>Capital Invested</th>
+                  <th>Current Valuation</th>
+                  <th>ROI %</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Global Tech M&A Fund</strong></td>
+                  <td>Private Equity</td>
+                  <td>$1,500,000</td>
+                  <td>$1,840,000</td>
+                  <td><span style="color:#2ecc71;font-weight:700">+22.6%</span></td>
+                  <td><button class="btn btn-outline" onclick="goto404()">Details</button></td>
+                </tr>
+                <tr>
+                  <td><strong>STACKLY Tax Shield Vault</strong></td>
+                  <td>Offshore Trust</td>
+                  <td>$1,200,000</td>
+                  <td>$1,360,000</td>
+                  <td><span style="color:#2ecc71;font-weight:700">+13.3%</span></td>
+                  <td><button class="btn btn-outline" onclick="goto404()">Details</button></td>
+                </tr>
+                <tr>
+                  <td><strong>European Commercial Debt</strong></td>
+                  <td>Fixed Income</td>
+                  <td>$1,000,000</td>
+                  <td>$1,095,000</td>
+                  <td><span style="color:#2ecc71;font-weight:700">+9.5%</span></td>
+                  <td><button class="btn btn-outline" onclick="goto404()">Details</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Salem Commercial Real Estate</strong></td>
+                  <td>Real Estate Trust</td>
+                  <td>$700,000</td>
+                  <td>$755,000</td>
+                  <td><span style="color:#2ecc71;font-weight:700">+7.8%</span></td>
+                  <td><button class="btn btn-outline" onclick="goto404()">Details</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="donor-card-widget">
+          <div class="donor-card-logo">
+            <span
+              style="font-family:'Outfit';font-weight:800;font-size:1.1rem;color:var(--accent);letter-spacing:1px">VIP
+              INVESTOR CARD</span>
+            <div class="donor-card-blood"><i class="fa-solid fa-vault"></i></div>
+          </div>
+          <div class="donor-card-details">
+            <div class="donor-card-label">Client Identity</div>
+            <div class="donor-card-val" id="widgetClientName">Sarah Jenkins</div>
+            <div class="donor-card-label">Portfolio Account ID</div>
+            <div class="donor-card-val">#STK-894201-HNW</div>
+          </div>
+          <div class="donor-card-footer">
+            <div>
+              <div class="donor-card-label">Advisory Office</div>
+              <div style="font-size:.85rem;font-weight:600">Salem Corporate Suite</div>
+            </div>
+            <div class="qr-code-placeholder">
+              <i class="fa-solid fa-qrcode"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Request Additional Capital Allocation / Rebalancing</h3>
+        <form onsubmit="event.preventDefault(); window.location.href='404.html';">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Target Investment Fund</label>
+              <select class="form-control">
+                <option>Global M&A Growth Fund II</option>
+                <option>STACKLY Tax Shield Vault</option>
+                <option>Private Corporate Debt Pool</option>
+                <option>Commercial Infrastructure Trust</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Capital Allocation Amount ($ USD)</label>
+              <input type="text" class="form-control" placeholder="e.g. $250,000" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Preferred Timeframe</label>
+              <select class="form-control">
+                <option>Immediate Execution</option>
+                <option>Q4 Rebalancing Cycle</option>
+                <option>Custom Strategic Schedule</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Advisory Notes / Instructions</label>
+              <input type="text" class="form-control"
+                placeholder="Specify any tax shielding or liquidity requirements...">
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Submit Investment Order <i
+              class="fa-solid fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- WEALTH & TAX ADVISORY -->
+    <div class="section" id="sec-advisory">
+      <div class="section-header">
+        <h2>1-on-1 Wealth Advisory & Tax Counsel</h2>
+        <p>Schedule consultations with our senior wealth architects and international legal team.</p>
+      </div>
+
+      <div class="grid-2-1">
+        <div class="form-card">
+          <h3>Book Advisory Session</h3>
+          <form onsubmit="event.preventDefault(); window.location.href='404.html';">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Select Advisory Architect</label>
+                <select class="form-control">
+                  <option>Dr. Rajesh Kumar - Private Capital Lead</option>
+                  <option>Ms. Priya Sen - International Tax Legal Counsel</option>
+                  <option>Mr. Alexander Vance - M&A Structuring Director</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Consultation Domain</label>
+                <select class="form-control">
+                  <option>Portfolio Yield Optimization</option>
+                  <option>OECD Tax Shielding & Trust Setup</option>
+                  <option>Corporate M&A Advisory</option>
+                  <option>Estate & Succession Planning</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Preferred Date</label>
+                <input type="date" class="form-control" value="2026-09-15" required>
+              </div>
+              <div class="form-group">
+                <label>Time Slot</label>
+                <select class="form-control">
+                  <option>10:00 AM - 11:30 AM (EST)</option>
+                  <option>02:00 PM - 03:30 PM (EST)</option>
+                  <option>05:00 PM - 06:30 PM (EST)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Key Discussion Agenda</label>
+              <textarea class="form-control" style="height:90px;resize:none"
+                placeholder="Detail your asset protection goals or restructuring inquiries..."></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Schedule Audit Meeting <i
+                class="fa-solid fa-calendar-check"></i></button>
+          </form>
+        </div>
+
+        <div class="settings-card">
+          <h3><i class="fa-solid fa-user-shield" style="color:var(--accent)"></i> Strategic Advisory Team</h3>
+          <div style="display:flex;flex-direction:column;gap:1.25rem;margin-top:1rem">
+            <div
+              style="display:flex;gap:1rem;align-items:center;border-bottom:1px solid var(--border);padding-bottom:1rem">
+              <div
+                style="width:45px;height:45px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff">
+                RK</div>
+              <div>
+                <div style="font-weight:700;font-size:0.95rem">Dr. Rajesh Kumar</div>
+                <div style="font-size:0.8rem;color:var(--gold)">Senior Managing Director</div>
+                <div style="font-size:0.75rem;color:var(--text2)">Salem Corporate HQ</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:center">
+              <div
+                style="width:45px;height:45px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff">
+                PS</div>
+              <div>
+                <div style="font-weight:700;font-size:0.95rem">Ms. Priya Sen</div>
+                <div style="font-size:0.8rem;color:var(--blue)">OECD Tax Legal Counsel</div>
+                <div style="font-size:0.75rem;color:var(--text2)">Bangalore Advisory Hub</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATEMENTS & REPORTS -->
+    <div class="section" id="sec-statements">
+      <div class="section-header">
+        <h2>Audit Reports & Tax Documentation</h2>
+        <p>Access your legal trust documents, quarterly returns, and OECD tax certificates.</p>
+      </div>
+
+      <div class="table-card">
+        <div class="table-header">
+          <h3>Downloadable Financial Statements</h3>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Document Title</th>
+                <th>Category</th>
+                <th>Issue Date</th>
+                <th>File Format</th>
+                <th>Verification</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Q2 2026 Comprehensive Portfolio Performance Audit</strong></td>
+                <td>Audit Report</td>
+                <td>Jul 1, 2026</td>
+                <td>PDF (3.4 MB)</td>
+                <td><span class="badge-status badge-done">Verified</span></td>
+                <td><button class="btn btn-outline" onclick="window.location.href='404.html'"><i
+                      class="fa-solid fa-download"></i> Download</button></td>
+              </tr>
+              <tr>
+                <td><strong>OECD CRS & FATCA Annual Tax Compliance Certificate</strong></td>
+                <td>Tax Shielding</td>
+                <td>Jan 15, 2026</td>
+                <td>Encrypted PDF</td>
+                <td><span class="badge-status badge-done">Certified</span></td>
+                <td><button class="btn btn-outline" onclick="window.location.href='404.html'"><i
+                      class="fa-solid fa-download"></i> Download</button></td>
+              </tr>
+              <tr>
+                <td><strong>Discretionary Asset Protection Trust Deed #892</strong></td>
+                <td>Legal Document</td>
+                <td>May 10, 2025</td>
+                <td>Signed PDF</td>
+                <td><span class="badge-status badge-done">Active Trust</span></td>
+                <td><button class="btn btn-outline" onclick="window.location.href='404.html'"><i
+                      class="fa-solid fa-download"></i> Download</button></td>
+              </tr>
+              <tr>
+                <td><strong>Annual Dividend & Capital Gain Tax Summary 2025-26</strong></td>
+                <td>Tax Statement</td>
+                <td>Apr 5, 2026</td>
+                <td>PDF (1.8 MB)</td>
+                <td><span class="badge-status badge-done">Verified</span></td>
+                <td><button class="btn btn-outline" onclick="window.location.href='404.html'"><i
+                      class="fa-solid fa-download"></i> Download</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIENT SETTINGS -->
+    <div class="section" id="sec-settings">
+      <div class="section-header">
+        <h2>Client Account Settings</h2>
+        <p>Manage your investor profile, security credentials, and communication preferences.</p>
+      </div>
+
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3><i class="fa-solid fa-user"></i> Investor Profile</h3>
+          <div class="form-group"><label>Full Name</label><input class="form-control" id="settingsNameVal"
+              value="Sarah Jenkins" type="text"></div>
+          <div class="form-group"><label>Email Address</label><input class="form-control" id="settingsEmailVal"
+              value="user@stackly.com" type="email"></div>
+          <div class="form-group"><label>Investor Classification</label><input class="form-control"
+              value="High Net Worth (HNW) Individual" readonly type="text"></div>
+          <button class="btn btn-primary" onclick="window.location.href='404.html'">Save Profile</button>
+        </div>
+
+        <div class="settings-card">
+          <h3><i class="fa-solid fa-lock"></i> Security & Authentication</h3>
+          <div class="form-group"><label>Current Password</label><input class="form-control" type="password"
+              placeholder="••••••••"></div>
+          <div class="form-group"><label>New Password</label><input class="form-control" type="password"
+              placeholder="••••••••"></div>
+          <button class="btn btn-primary" onclick="window.location.href='404.html'">Update Security Key</button>
+        </div>
+
+        <div class="settings-card">
+          <h3><i class="fa-solid fa-bell"></i> Investor Notifications</h3>
+          <div class="toggle-row">
+            <div class="toggle-info"><strong>Dividend Payout Alerts</strong><span>Receive immediate SMS on fund yield
+                dissemination</span></div><label class="toggle"><input type="checkbox" checked><span
+                class="toggle-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><strong>Market Volatility Reports</strong><span>Weekly risk analysis from advisory
+                committee</span></div><label class="toggle"><input type="checkbox" checked><span
+                class="toggle-slider"></span></label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info"><strong>OECD Tax Filing Reminders</strong><span>Quarterly tax shielding
+                alerts</span></div><label class="toggle"><input type="checkbox" checked><span
+                class="toggle-slider"></span></label>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3><i class="fa-solid fa-building-columns"></i> Primary Advisory Hub</h3>
+          <div class="form-group"><label>Assigned Regional Office</label><input class="form-control"
+              value="Salem Corporate Headquarters, MMR Complex" readonly type="text"></div>
+          <div class="form-group"><label>Assigned Lead Advisor</label><input class="form-control"
+              value="Dr. Rajesh Kumar (Ext. 401)" readonly type="text"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Sidebar Toggle
+    function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open') }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open') }
+    function goto404() { window.location.href = '404.html' }
+
+    // Navigation Sections
+    var titles = {
+      dashboard: 'Portfolio Overview',
+      portfolio: 'Holdings & Capital',
+      advisory: 'Wealth Advisory',
+      statements: 'Audit & Reports',
+      settings: 'Client Settings'
+    };
+
+    function showSection(id, el) {
+      history.replaceState(null, null, '#' + id);
+      document.querySelectorAll('.section').forEach(function (s) { s.classList.remove('active') });
+      document.querySelectorAll('.nav-item').forEach(function (n) { n.classList.remove('active') });
+      var sec = document.getElementById('sec-' + id);
+      if (sec) sec.classList.add('active');
+      if (el) {
+        el.classList.add('active');
+      } else {
+        document.querySelectorAll('.nav-item').forEach(function (n) {
+          if (n.textContent.toLowerCase().includes(id.toLowerCase())) {
+            n.classList.add('active');
+          }
+        });
+      }
+      document.getElementById('pageTitle').textContent = titles[id] || id;
+      if (window.innerWidth <= 992) closeSidebar();
+      window.scrollTo(0, 0);
+    }
+
+    // Chart.js Setup
+    var C = Chart;
+    var MONTHS = ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026', 'Q3 2026'];
+    var ACCENT = 'rgba(217,4,41,1)', ACCENT2 = 'rgba(217,4,41,0.15)';
+    var BLUE = 'rgba(52,152,219,1)';
+    var GREEN = 'rgba(46,204,113,1)';
+    var GOLD = 'rgba(243,156,18,1)';
+    var grid = { color: 'rgba(255,255,255,0.05)' };
+    var tickStyle = { color: '#9898b0', font: { size: 11, family: 'Outfit' } };
+    var defaults = { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: '#9898b0', font: { size: 11, family: 'Outfit' }, boxWidth: 12 } } } };
+
+    window.addEventListener('load', function () {
+      // Line chart: Growth
+      var ctx = document.getElementById('userGrowthChart');
+      if (ctx) {
+        new C(ctx, {
+          type: 'line',
+          data: {
+            labels: MONTHS,
+            datasets: [{
+              label: 'Portfolio Valuation ($ USD)',
+              data: [3200000, 3500000, 3850000, 4100000, 4350000, 4600000, 4850000],
+              borderColor: ACCENT,
+              backgroundColor: ACCENT2,
+              fill: true,
+              tension: .4,
+              pointRadius: 4
+            }]
+          },
+          options: Object.assign({}, defaults, { scales: { x: { grid: grid, ticks: tickStyle }, y: { grid: grid, ticks: tickStyle } } })
+        });
+      }
+
+      // Donut chart: Asset Allocation
+      var ctx2 = document.getElementById('assetDonut');
+      if (ctx2) {
+        new C(ctx2, {
+          type: 'doughnut',
+          data: {
+            labels: ['Private Equity (M&A)', 'Tax Shield Trust', 'Fixed Income Debt', 'Real Estate Trust'],
+            datasets: [{
+              data: [40, 28, 20, 12],
+              backgroundColor: [ACCENT, GREEN, BLUE, GOLD],
+              borderWidth: 0
+            }]
+          },
+          options: Object.assign({}, defaults, { cutout: '70%' })
+        });
+      }
+    });
+
+    // Dynamic LocalStorage Identity Restoration
+    document.addEventListener("DOMContentLoaded", function () {
+      const loggedInEmail = localStorage.getItem("loggedInEmail") || "user@stackly.com";
+      const storedName = localStorage.getItem("loggedInName");
+
+      function getClientName(email) {
+        if (storedName && storedName !== 'user') {
+          return storedName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        }
+        const mapping = {
+          'sarah.doe@example.com': 'Sarah Doe',
+          'user@stackly.com': 'Sarah Jenkins',
+          'alex.kane@example.com': 'Alexander Kane'
+        };
+        if (mapping[email]) return mapping[email];
+        const prefix = email.split('@')[0];
+        return prefix.split(/[\._-]/).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      }
+
+      function getInitials(name) {
+        const parts = name.trim().split(/\s+/);
+        if (parts.length >= 2) return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+        return name.slice(0, 2).toUpperCase();
+      }
+
+      const name = getClientName(loggedInEmail);
+      const initials = getInitials(name);
+
+      // Apply to UI Elements
+      const headerName = document.getElementById("headerUserName");
+      if (headerName) headerName.textContent = name;
+
+      const headerAvatar = document.getElementById("headerAvatar");
+      if (headerAvatar) headerAvatar.textContent = initials;
+
+      const welcomeTitle = document.getElementById("welcomeTitle");
+      if (welcomeTitle) welcomeTitle.textContent = "Welcome back, " + name;
+
+      const widgetClientName = document.getElementById("widgetClientName");
+      if (widgetClientName) widgetClientName.textContent = name;
+
+      const settingsNameVal = document.getElementById("settingsNameVal");
+      if (settingsNameVal) settingsNameVal.value = name;
+
+      const settingsEmailVal = document.getElementById("settingsEmailVal");
+      if (settingsEmailVal) settingsEmailVal.value = loggedInEmail;
+    });
+
+    // Hash restoration
+    var hash = window.location.hash.substring(1);
+    if (hash && titles[hash]) showSection(hash);
+    window.addEventListener('hashchange', function () {
+      var h = window.location.hash.substring(1);
+      if (h && titles[h]) showSection(h);
+    });
+  </script>
+</body>
+
+</html>

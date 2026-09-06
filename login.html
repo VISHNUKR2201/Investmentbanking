@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Access & Sign Up | stackly - Giving Future to your Investment</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header">
+
+        <!-- Sticky Navbar -->
+        <div class="sticky-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="org-logos_324746.webp" alt="stackly logo">
+                    </a>
+                </div>
+
+                <!-- Main Nav -->
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-right">
+                    <a href="login.html" class="btn btn-red login-btn active">Login <i class="fas fa-sign-in-alt"></i></a>
+
+                    <!-- Mobile Toggle -->
+                    <div class="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div class="mobile-menu-overlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-menu-header">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="org-logos_324746.webp" alt="stackly logo">
+                            </a>
+                        </div>
+                        <div class="close-menu"><i class="fas fa-times"></i></div>
+                    </div>
+                    <ul class="mobile-nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="mobile-menu-footer" style="margin-top: auto;">
+                        <a href="login.html" class="btn btn-red btn-block" style="text-align: center;">Login <i class="fas fa-sign-in-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Auth Hero Section -->
+        <section class="auth-hero">
+            <div class="container auth-container" data-aos="fade-up">
+                <div class="auth-card">
+                    
+                    <!-- Header Text -->
+                    <div class="auth-header-text">
+                        <h2>Welcome to Stackly</h2>
+                        <p>Access your investment dashboard or create a new account</p>
+                    </div>
+
+                    <!-- Dual Auth Navigation Tabs -->
+                    <div class="auth-tabs">
+                        <button type="button" class="auth-tab-btn active" data-tab="login">
+                            <i class="fas fa-sign-in-alt"></i> Log In
+                        </button>
+                        <button type="button" class="auth-tab-btn" data-tab="signup">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </button>
+                    </div>
+
+                    <!-- LOGIN PANEL -->
+                    <div class="auth-form-panel active" id="login-panel">
+                        <form id="loginForm" novalidate>
+                            
+                            <!-- Role Selection Pills -->
+                            <div class="role-selection-wrapper">
+                                <label class="role-label"><i class="fas fa-user-shield"></i> Select Portal Role</label>
+                                <div class="role-pills">
+                                    <div class="role-pill selected" data-role="USER">
+                                        <i class="fas fa-user"></i> USER
+                                    </div>
+                                    <div class="role-pill" data-role="ADMIN">
+                                        <i class="fas fa-shield-alt"></i> ADMIN
+                                    </div>
+                                </div>
+                                <input type="hidden" id="loginRole" class="role-hidden-input" value="USER">
+                            </div>
+
+                            <!-- Email Field -->
+                            <div class="input-group-custom">
+                                <label for="loginEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                                <div class="input-field-wrapper">
+                                    <input type="email" id="loginEmail" placeholder="e.g. user@stackly.com" required>
+                                    <i class="fas fa-envelope field-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Password Field -->
+                            <div class="input-group-custom">
+                                <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+                                <div class="input-field-wrapper">
+                                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                                    <i class="fas fa-lock field-icon"></i>
+                                    <button type="button" class="password-toggle" title="Toggle Password Visibility">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Remember & Forgot Meta -->
+                            <div class="auth-meta-row">
+                                <label class="remember-checkbox">
+                                    <input type="checkbox" id="rememberMe" checked>
+                                    <span>Remember Me</span>
+                                </label>
+                                <a href="404.html" class="forgot-link">Forgot Password?</a>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-red btn-block auth-submit-btn">
+                                Log In to Portal <i class="fas fa-sign-in-alt"></i>
+                            </button>
+
+                            <!-- Switch Footer -->
+                            <div class="auth-footer-switch">
+                                Don't have an account? <a href="#" class="switch-tab-link" data-tab="signup">Sign Up now</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- SIGNUP PANEL -->
+                    <div class="auth-form-panel" id="signup-panel">
+                        <form id="signupForm" novalidate>
+                            
+                            <!-- Full Name Field -->
+                            <div class="input-group-custom">
+                                <label for="signupName"><i class="fas fa-user"></i> Full Name</label>
+                                <div class="input-field-wrapper">
+                                    <input type="text" id="signupName" placeholder="e.g. Sarah Jenkins" required>
+                                    <i class="fas fa-user field-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Email Field -->
+                            <div class="input-group-custom">
+                                <label for="signupEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                                <div class="input-field-wrapper">
+                                    <input type="email" id="signupEmail" placeholder="e.g. sarah@example.com" required>
+                                    <i class="fas fa-envelope field-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Phone Field -->
+                            <div class="input-group-custom">
+                                <label for="signupPhone"><i class="fas fa-phone"></i> Phone Number</label>
+                                <div class="input-field-wrapper">
+                                    <input type="tel" id="signupPhone" class="phone-input" placeholder="e.g. +1 234 567 890" required>
+                                    <i class="fas fa-phone field-icon"></i>
+                                </div>
+                            </div>
+
+                            <!-- Role Selection Pills -->
+                            <div class="role-selection-wrapper">
+                                <label class="role-label"><i class="fas fa-user-shield"></i> Select Portal Role</label>
+                                <div class="role-pills">
+                                    <div class="role-pill selected" data-role="USER">
+                                        <i class="fas fa-user"></i> USER
+                                    </div>
+                                    <div class="role-pill" data-role="ADMIN">
+                                        <i class="fas fa-shield-alt"></i> ADMIN
+                                    </div>
+                                </div>
+                                <input type="hidden" id="signupRole" class="role-hidden-input" value="USER">
+                            </div>
+
+                            <!-- Password Field -->
+                            <div class="input-group-custom">
+                                <label for="signupPassword"><i class="fas fa-lock"></i> Password</label>
+                                <div class="input-field-wrapper">
+                                    <input type="password" id="signupPassword" placeholder="Create password (min 6 chars)" required>
+                                    <i class="fas fa-lock field-icon"></i>
+                                    <button type="button" class="password-toggle" title="Toggle Password Visibility">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password Field -->
+                            <div class="input-group-custom">
+                                <label for="signupConfirmPassword"><i class="fas fa-key"></i> Confirm Password</label>
+                                <div class="input-field-wrapper">
+                                    <input type="password" id="signupConfirmPassword" placeholder="Re-enter password" required>
+                                    <i class="fas fa-key field-icon"></i>
+                                    <button type="button" class="password-toggle" title="Toggle Password Visibility">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Terms Checkbox -->
+                            <div class="auth-meta-row">
+                                <label class="remember-checkbox">
+                                    <input type="checkbox" id="signupTerms" checked required>
+                                    <span>I agree to Stackly <a href="404.html" class="forgot-link">Terms & Privacy</a></span>
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-red btn-block auth-submit-btn">
+                                Create Account <i class="fas fa-user-check"></i>
+                            </button>
+
+                            <!-- Switch Footer -->
+                            <div class="auth-footer-switch">
+                                Already have an account? <a href="#" class="switch-tab-link" data-tab="login">Log In here</a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <!-- Column 1: About -->
+            <div class="footer-col about-col">
+                <div class="logo footer-logo">
+                    <a href="index.html">
+                        <img src="org-logos_324746.webp" alt="stackly logo">
+                    </a>
+                </div>
+                <p>Providing world-class financial solutions for over 20 years. We empower businesses to reach their
+                    full potential through strategic planning.</p>
+                <div class="social-links">
+                    <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                    <a href="404.html"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-col links-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login / Signup</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Services -->
+            <div class="footer-col services-col">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="404.html">Financial Advice</a></li>
+                    <li><a href="404.html">Tax Planning</a></li>
+                    <li><a href="404.html">Estate Planning</a></li>
+                    <li><a href="404.html">Retirement Plan</a></li>
+                    <li><a href="404.html">Market Analysis</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Contact -->
+            <div class="footer-col contact-col">
+                <h3>Contact Info</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>MMR Complex, Salem, Tamilnadu</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>098 6650 4085</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@stackly.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 stackly Company. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

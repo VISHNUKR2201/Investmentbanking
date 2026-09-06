@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & Insights - STACKLY Capital Advisory</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="main-header">
+
+        <!-- Sticky Navbar -->
+        <div class="sticky-header">
+            <div class="container header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="org-logos_324746.webp" alt="stackly logo">
+                    </a>
+                </div>
+
+                <!-- Main Nav -->
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="blog.html" class="active">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-right">
+                    <a href="login.html" class="btn btn-red login-btn">Login <i class="fas fa-sign-in-alt"></i></a>
+
+                    <!-- Mobile Toggle -->
+                    <div class="mobile-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div class="mobile-menu-overlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-menu-header">
+                        <div class="logo">
+                            <a href="index.html">
+                                <img src="org-logos_324746.webp" alt="stackly logo">
+                            </a>
+                        </div>
+                        <div class="close-menu"><i class="fas fa-times"></i></div>
+                    </div>
+                    <ul class="mobile-nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="mobile-menu-footer" style="margin-top: auto;">
+                        <a href="login.html" class="btn btn-red btn-block" style="text-align: center;">Login <i class="fas fa-sign-in-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <h1 class="reveal fade-up">Insights, Analysis & Market Intelligence</h1>
+                <div class="play-btn reveal zoom-in">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-section 1: Featured Article Spotlight -->
+        <section class="blog-featured-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Featured Analysis</h2>
+                </div>
+                <div class="featured-blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="featured-blog-img">
+                        <img src="images/afieq-abdillah-6hMCyB0c2-k-unsplash.webp" alt="Global Tax Reform 2026">
+                    </div>
+                    <div class="featured-blog-content">
+                        <span class="blog-tag">Market Strategy</span>
+                        <h2>Navigating International Tax Regulations & Cross-Border Wealth Shields</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-user"></i> By Wahyu Bintoro</span>
+                            <span><i class="far fa-calendar-alt"></i> Sept 1, 2026</span>
+                            <span><i class="far fa-clock"></i> 8 Min Read</span>
+                        </div>
+                        <p>Discover how OECD Common Reporting Standard updates and new offshore holding structures impact international corporate wealth preservation and capital gains optimization in 2026.</p>
+                        <a href="404.html" class="btn btn-red">Read Full Article</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-section 2: Category Filter & 6-Card Article Grid -->
+        <section class="blog-filters-section">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Latest Market Articles</h2>
+                    <p style="color: var(--text-grey); max-width: 600px; margin: 15px auto 0;">Explore research briefings, tax structuring blueprints, and market advisory reports.</p>
+                </div>
+                
+                <!-- Category Filter Buttons -->
+                <div class="blog-filters-wrapper" data-aos="fade-up">
+                    <button class="blog-filter-btn active" data-category="all">All Insights</button>
+                    <button class="blog-filter-btn" data-category="tax">Tax Optimization</button>
+                    <button class="blog-filter-btn" data-category="estate">Estate Planning</button>
+                    <button class="blog-filter-btn" data-category="market">Market Trends</button>
+                    <button class="blog-filter-btn" data-category="corporate">Corporate Finance</button>
+                </div>
+
+                <!-- 6-Card Grid -->
+                <div class="blog-grid-v2">
+                    <!-- Article Card 1 -->
+                    <article class="blog-card-v2 spotlight-card" data-category="tax" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-card-img">
+                            <img src="images/stephen-dawson-qwtCeJ5cLYs-unsplash.webp" alt="Tax Losses Harvesting">
+                            <span class="blog-tag" style="position: absolute; top: 15px; left: 15px;">Tax Advice</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3>Algorithmic Tax-Loss Harvesting Strategies for High Net-Worth Portfolios</h3>
+                            <p>How real-time automated asset rebalancing minimizes annual taxable gains while maintaining full equity market exposure.</p>
+                            <div class="blog-card-footer">
+                                <div class="author-info">
+                                    <img src="images/hendi-perkasa-QumTDZDlROs-unsplash.webp" alt="Author" class="author-avatar">
+                                    <span class="author-name">Hendi Perkasa</span>
+                                </div>
+                                <a href="404.html" class="read-more" style="color: var(--primary-red); font-weight: 700;">Read <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 2 -->
+                    <article class="blog-card-v2 spotlight-card" data-category="estate" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-card-img">
+                            <img src="images/jakub-zerdzicki-hGMONQ4T7Co-unsplash.webp" alt="Family Trust Architecture">
+                            <span class="blog-tag accent" style="position: absolute; top: 15px; left: 15px;">Estate Shield</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3>Building Generational Family Trusts: Legal Models & Multi-Jurisdiction Offshores</h3>
+                            <p>A comprehensive blueprint for establishing non-discretionary family trusts to protect legacy assets against legal claims.</p>
+                            <div class="blog-card-footer">
+                                <div class="author-info">
+                                    <img src="images/wahyu-bintoro-mIL7-ctA96M-unsplash.webp" alt="Author" class="author-avatar">
+                                    <span class="author-name">Ahmad Wahyu</span>
+                                </div>
+                                <a href="404.html" class="read-more" style="color: var(--primary-red); font-weight: 700;">Read <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 3 -->
+                    <article class="blog-card-v2 spotlight-card" data-category="market" data-aos="fade-up" data-aos-delay="300">
+                        <div class="blog-card-img">
+                            <img src="images/nicholas-cappello-Wb63zqJ5gnE-unsplash.webp" alt="Yield Curve Trends">
+                            <span class="blog-tag" style="position: absolute; top: 15px; left: 15px;">Market Trends</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3>Macro Yield Curve Shifts: Hedging Capital against Persistent Inflation Drag</h3>
+                            <p>Analyzing fixed-income municipal bond yields and short-duration liquid assets to maintain real purchasing power.</p>
+                            <div class="blog-card-footer">
+                                <div class="author-info">
+                                    <img src="images/wahyu-bintoro-6oUzGsvwJAE-unsplash.webp" alt="Author" class="author-avatar">
+                                    <span class="author-name">Wahyu Bintoro</span>
+                                </div>
+                                <a href="404.html" class="read-more" style="color: var(--primary-red); font-weight: 700;">Read <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 4 -->
+                    <article class="blog-card-v2 spotlight-card" data-category="corporate" data-aos="fade-up" data-aos-delay="400">
+                        <div class="blog-card-img">
+                            <img src="images/invest-europe-SHOtzpdZwOs-unsplash.webp" alt="Corporate M&A Tax">
+                            <span class="blog-tag accent" style="position: absolute; top: 15px; left: 15px;">Corporate</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3>Corporate Restructuring & Double Taxation Treaty Optimization in Mergers</h3>
+                            <p>Key financial considerations when executing cross-border acquisitions and establishing foreign holding entities.</p>
+                            <div class="blog-card-footer">
+                                <div class="author-info">
+                                    <img src="images/hendi-perkasa-tnneI1xtwhY-unsplash.webp" alt="Author" class="author-avatar">
+                                    <span class="author-name">Budi Perkasa</span>
+                                </div>
+                                <a href="404.html" class="read-more" style="color: var(--primary-red); font-weight: 700;">Read <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 5 -->
+                    <article class="blog-card-v2 spotlight-card" data-category="tax" data-aos="fade-up" data-aos-delay="500">
+                        <div class="blog-card-img">
+                            <img src="images/alghozy-qL3aPXalCLo-unsplash.webp" alt="Charitable Trust Shield">
+                            <span class="blog-tag" style="position: absolute; top: 15px; left: 15px;">Tax Advice</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3>Charitable Remainder Trusts (CRTs) as Capital Shielding Instruments</h3>
+                            <p>Leveraging philanthropic endowments to secure tax deductions while ensuring income streams for beneficiaries.</p>
+                            <div class="blog-card-footer">
+                                <div class="author-info">
+                                    <img src="images/wahyu-bintoro-mIL7-ctA96M-unsplash.webp" alt="Author" class="author-avatar">
+                                    <span class="author-name">Ahmad Wahyu</span>
+                                </div>
+                                <a href="404.html" class="read-more" style="color: var(--primary-red); font-weight: 700;">Read <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article Card 6 -->
+                    <article class="blog-card-v2 spotlight-card" data-category="market" data-aos="fade-up" data-aos-delay="600">
+                        <div class="blog-card-img">
+                            <img src="images/ayush-bhoyar-RYdEhuC37D4-unsplash.webp" alt="Quantitative Analysis">
+                            <span class="blog-tag accent" style="position: absolute; top: 15px; left: 15px;">Market Trends</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <h3>Predictive Quantitative Forecasting Models in Mid-Market Asset Management</h3>
+                            <p>How machine learning models evaluate macroeconomic risks and identify undervalued regional growth opportunities.</p>
+                            <div class="blog-card-footer">
+                                <div class="author-info">
+                                    <img src="images/hendi-perkasa-QumTDZDlROs-unsplash.webp" alt="Author" class="author-avatar">
+                                    <span class="author-name">Hendi Perkasa</span>
+                                </div>
+                                <a href="404.html" class="read-more" style="color: var(--primary-red); font-weight: 700;">Read <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-section 3: Editor's Choice Trending Topics -->
+        <section class="sticky-stacking-section" style="background: var(--light-grey-bg); padding: 100px 0;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Editor's Choice Trending Topics</h2>
+                    <p style="color: var(--text-grey); max-width: 600px; margin: 15px auto 0;">Deep-dive technical reports curated by our chief investment officer.</p>
+                </div>
+                <div class="stacking-cards-container">
+                    <!-- Stacking Card 1 -->
+                    <div class="stacking-card spotlight-card" id="blog-stack-1">
+                        <div class="card-num">01</div>
+                        <div class="card-content">
+                            <h3>Private Equity Valuation in High Inflation Cycles</h3>
+                            <p>An in-depth study analyzing EBITDA multiple shifts, leverage cost adjustments, and exit strategy timing across US and European private equity portfolios.</p>
+                            <a href="404.html" class="read-more">Download Executive Summary <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Stacking Card 2 -->
+                    <div class="stacking-card spotlight-card" id="blog-stack-2">
+                        <div class="card-num">02</div>
+                        <div class="card-content">
+                            <h3>Offshore Holding Structures & Compliance Standards</h3>
+                            <p>Comparing statutory compliance requirements across primary asset holding jurisdictions including Zurich, Singapore, and Liechtenstein.</p>
+                            <a href="404.html" class="read-more">View Jurisdiction Comparison <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Stacking Card 3 -->
+                    <div class="stacking-card spotlight-card" id="blog-stack-3">
+                        <div class="card-num">03</div>
+                        <div class="card-content">
+                            <h3>Generational Wealth Transfer & Succession Charters</h3>
+                            <p>Practical guidelines for creating family office constitutions, establishing governance committees, and mitigating multi-generational asset disputes.</p>
+                            <a href="404.html" class="read-more">Access Succession Guide <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-section 4: Market Intelligence Stats Counter -->
+        <section class="success-stats" style="background: var(--white); padding: 100px 0;">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Research & Publishing Impact</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item reveal zoom-in" style="--delay: 0.1s">
+                        <h3 class="counter" data-target="500" data-suffix="+">0</h3>
+                        <p>Published Advisory Reports</p>
+                    </div>
+                    <div class="stat-item reveal zoom-in" style="--delay: 0.2s">
+                        <h3 class="counter" data-target="150" data-suffix="K+">0</h3>
+                        <p>Monthly Executive Readers</p>
+                    </div>
+                    <div class="stat-item reveal zoom-in" style="--delay: 0.3s">
+                        <h3 class="counter" data-target="99.4" data-suffix="%">0</h3>
+                        <p>Forecast Accuracy Metric</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-section 5: Executive Authors & Thought Leaders -->
+        <section class="leadership-section" style="padding: 100px 0; background: var(--light-grey-bg);">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <h2>Our Financial Authors</h2>
+                    <p style="color: var(--text-grey); max-width: 600px; margin: 15px auto 0;">Meet the senior economists, legal scholars, and quantitative analysts contributing to STACKLY Insights.</p>
+                </div>
+                <div class="leadership-grid">
+                    <!-- Author 1 -->
+                    <div class="leader-card floating-card spotlight-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="leader-img-wrap">
+                            <img src="images/wahyu-bintoro-6oUzGsvwJAE-unsplash.webp" alt="Wahyu Bintoro">
+                        </div>
+                        <div class="leader-info">
+                            <h3>Wahyu Bintoro</h3>
+                            <span class="leader-role">Chief Macro Editor</span>
+                            <p>Author of over 120 market briefings on Wall Street allocation and private equity valuation models.</p>
+                            <a href="404.html" class="btn btn-red" style="padding: 8px 18px; font-size: 12px; margin-top: 15px;">View Articles</a>
+                        </div>
+                    </div>
+                    <!-- Author 2 -->
+                    <div class="leader-card floating-card spotlight-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="leader-img-wrap">
+                            <img src="images/hendi-perkasa-QumTDZDlROs-unsplash.webp" alt="Hendi Perkasa">
+                        </div>
+                        <div class="leader-info">
+                            <h3>Hendi Perkasa</h3>
+                            <span class="leader-role">Quantitative Research Lead</span>
+                            <p>Specializes in predictive algorithmic models, interest rate hedging, and yield curve forecasting.</p>
+                            <a href="404.html" class="btn btn-red" style="padding: 8px 18px; font-size: 12px; margin-top: 15px;">View Articles</a>
+                        </div>
+                    </div>
+                    <!-- Author 3 -->
+                    <div class="leader-card floating-card spotlight-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="leader-img-wrap">
+                            <img src="images/wahyu-bintoro-mIL7-ctA96M-unsplash.webp" alt="Ahmad Wahyu">
+                        </div>
+                        <div class="leader-info">
+                            <h3>Ahmad Wahyu</h3>
+                            <span class="leader-role">Tax Legal Analyst</span>
+                            <p>Legal scholar writing on cross-border estate shielding, CRS disclosures, and offshore trust laws.</p>
+                            <a href="404.html" class="btn btn-red" style="padding: 8px 18px; font-size: 12px; margin-top: 15px;">View Articles</a>
+                        </div>
+                    </div>
+                    <!-- Author 4 -->
+                    <div class="leader-card floating-card spotlight-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="leader-img-wrap">
+                            <img src="images/hendi-perkasa-tnneI1xtwhY-unsplash.webp" alt="Budi Perkasa">
+                        </div>
+                        <div class="leader-info">
+                            <h3>Budi Perkasa</h3>
+                            <span class="leader-role">Global Markets Editor</span>
+                            <p>Coordinates European and Asian market coverage, analyzing international corporate tax treaties.</p>
+                            <a href="404.html" class="btn btn-red" style="padding: 8px 18px; font-size: 12px; margin-top: 15px;">View Articles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-section 6: Glassmorphic Newsletter Subscription Digest -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-box" data-aos="zoom-in">
+                    <div class="newsletter-text">
+                        <h2>Subscribe to STACKLY Advisory Digest</h2>
+                        <p>Receive weekly confidential market analysis, tax code updates, and executive asset management briefs directly in your inbox.</p>
+                        <div class="newsletter-features">
+                            <span><i class="fas fa-check-circle"></i> Weekly Market Brief</span>
+                            <span><i class="fas fa-check-circle"></i> Zero Spam Guarantee</span>
+                            <span><i class="fas fa-check-circle"></i> Unsubscribe Anytime</span>
+                        </div>
+                    </div>
+                    <form action="404.html" method="GET" class="newsletter-form">
+                        <input type="text" placeholder="Your Full Name" required>
+                        <input type="email" placeholder="Corporate Email Address" required>
+                        <button type="submit" class="btn btn-red btn-block">Subscribe Now <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sub-section 7: Strategic Advisory Call to Action -->
+        <section class="about-cta-section" data-aos="fade-up">
+            <div class="container cta-wrapper">
+                <h2>Have Questions About Market Trends?</h2>
+                <p>Schedule a 1-on-1 consultation session with our private capital allocation architects.</p>
+                <div class="cta-actions">
+                    <a href="404.html" class="btn btn-red">Login to Portal</a>
+                    <a href="404.html" class="btn btn-border-white">Request Free Quote</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <!-- Column 1: About -->
+            <div class="footer-col about-col">
+                <div class="logo footer-logo">
+                    <a href="index.html">
+                        <img src="org-logos_324746.webp" alt="stackly logo">
+                    </a>
+                </div>
+                <p>Providing world-class financial solutions for over 20 years. We empower businesses to reach their
+                    full potential through strategic planning.</p>
+                <div class="social-links">
+                    <a href="404.html"><i class="fab fa-facebook-f"></i></a>
+                    <a href="404.html"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div class="footer-col links-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login / Signup</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Services -->
+            <div class="footer-col services-col">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="404.html">Financial Advice</a></li>
+                    <li><a href="404.html">Tax Planning</a></li>
+                    <li><a href="404.html">Estate Planning</a></li>
+                    <li><a href="404.html">Retirement Plan</a></li>
+                    <li><a href="404.html">Market Analysis</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Contact -->
+            <div class="footer-col contact-col">
+                <h3>Contact Info</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>MMR Complex, Salem, Tamilnadu</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <p>098 6650 4085</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>info@stackly.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-content">
+                <p>&copy; 2026 STACKLY. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="404.html">Privacy Policy</a>
+                    <a href="404.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+
+</html>
