@@ -824,6 +824,36 @@ footer {
     margin-bottom: 25px;
 }
 
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: #abb8c3;
+    font-size: 15px;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: var(--primary-red);
+    border-color: var(--primary-red);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(229, 57, 53, 0.35);
+    padding-left: 0;
+}
+
 .footer-col ul li {
     margin-bottom: 15px;
 }

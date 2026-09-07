@@ -201,10 +201,42 @@
     </div>
 
     <script>
-        // Setup Go Back action using history.back() with home fallback
+        // Setup Go Back action with state preservation fallback
         document.getElementById('goBackBtn').addEventListener('click', function(e) {
             e.preventDefault();
-            if (window.history.length > 1) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fromUrl = urlParams.get('from');
+            const scrollY = urlParams.get('scrollY');
+
+            const savedUrl = sessionStorage.getItem('dashboard_last_url');
+            const savedSection = sessionStorage.getItem('dashboard_last_section');
+            const savedScroll = sessionStorage.getItem('dashboard_last_scroll');
+
+            function buildRedirectUrl(base, sY, sec) {
+                let url = base;
+                let hash = '';
+                if (url.includes('#')) {
+                    const parts = url.split('#');
+                    url = parts[0];
+                    hash = '#' + parts[1];
+                } else if (sec) {
+                    hash = '#' + sec;
+                }
+                const scrollVal = sY !== null && sY !== undefined ? sY : savedScroll;
+                if (scrollVal && !url.includes('restoreScroll')) {
+                    url += (url.includes('?') ? '&' : '?') + 'restoreScroll=' + scrollVal;
+                }
+                return url + hash;
+            }
+
+            if (fromUrl) {
+                let redirectUrl = decodeURIComponent(fromUrl);
+                window.location.href = buildRedirectUrl(redirectUrl, scrollY, savedSection);
+            } else if (savedUrl) {
+                window.location.href = buildRedirectUrl(savedUrl, savedScroll, savedSection);
+            } else if (document.referrer && (document.referrer.includes('user-dashboard') || document.referrer.includes('admin-dashboard'))) {
+                window.location.href = buildRedirectUrl(document.referrer, savedScroll, savedSection);
+            } else if (window.history.length > 1) {
                 window.history.back();
             } else {
                 window.location.href = 'index.html';

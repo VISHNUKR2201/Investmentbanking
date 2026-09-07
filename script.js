@@ -589,6 +589,11 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('userRole', role);
             localStorage.setItem('loggedInName', email.split('@')[0]);
 
+            // Clear any previous dashboard section/scroll state on new login
+            sessionStorage.removeItem('dashboard_last_section');
+            sessionStorage.removeItem('dashboard_last_scroll');
+            sessionStorage.removeItem('dashboard_last_url');
+
             showToast('Login Successful!', `Redirecting to ${role} portal...`, 'success');
 
             setTimeout(() => {

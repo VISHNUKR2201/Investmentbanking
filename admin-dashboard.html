@@ -1193,7 +1193,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      <a href="./admin-dashboard.html" style="display:flex;align-items:center;gap:0.5rem">
+      <a href="admin-dashboard.html" onclick="resetToOverview(event)" style="display:flex;align-items:center;gap:0.5rem">
         <img src="org-logos_324746.webp" alt="Stackly Logo" style="height:32px">
       </a>
       <span class="sidebar-close" onclick="closeSidebar()"><i class="fa-solid fa-xmark"></i></span>
@@ -1214,7 +1214,7 @@
             class="fa-solid fa-sliders"></i></span>Board Settings</div>
     </nav>
     <div class="sidebar-footer">
-      <button class="logout-btn" onclick="window.location.href='login.html'"><i
+      <button class="logout-btn" onclick="logoutDashboard()"><i
           class="fa-solid fa-right-from-bracket"></i> &nbsp;Sign Out</button>
     </div>
   </aside>
@@ -1233,11 +1233,11 @@
     </div>
 
     <div class="header-right">
-      <div class="icon-btn" onclick="window.location.href='404.html'"><i class="fa-solid fa-bell"></i><span
+      <div class="icon-btn" onclick="goto404()"><i class="fa-solid fa-bell"></i><span
           class="badge">4</span></div>
-      <div class="icon-btn" onclick="window.location.href='404.html'"><i class="fa-solid fa-shield-halved"></i><span
+      <div class="icon-btn" onclick="goto404()"><i class="fa-solid fa-shield-halved"></i><span
           class="badge">2</span></div>
-      <div class="admin-profile" onclick="window.location.href='404.html'">
+      <div class="admin-profile" onclick="goto404()">
         <div class="admin-avatar" id="adminAvatar">RK</div>
         <div class="admin-profile-info">
           <div class="admin-name" id="adminName">Dr. Rajesh Kumar</div>
@@ -1432,7 +1432,7 @@
         <div class="table-header">
           <h3>Active HNW Client Profiles</h3>
           <div class="table-actions">
-            <button class="btn btn-primary btn-sm" onclick="window.location.href='404.html'">+ Onboard Client</button>
+            <button class="btn btn-primary btn-sm" onclick="goto404()">+ Onboard Client</button>
           </div>
         </div>
         <div class="table-responsive">
@@ -1458,7 +1458,7 @@
                 <td><span class="badge-status badge-active">HNW Elite</span></td>
                 <td>$4,850,000</td>
                 <td>Dr. Rajesh Kumar</td>
-                <td><button class="btn btn-sm btn-outline" onclick="window.location.href='404.html'">Review
+                <td><button class="btn btn-sm btn-outline" onclick="goto404()">Review
                     Account</button></td>
               </tr>
               <tr>
@@ -1471,7 +1471,7 @@
                 <td><span class="badge-status badge-active">Ultra HNW</span></td>
                 <td>$12,400,000</td>
                 <td>Ms. Priya Sen</td>
-                <td><button class="btn btn-sm btn-outline" onclick="window.location.href='404.html'">Review
+                <td><button class="btn btn-sm btn-outline" onclick="goto404()">Review
                     Account</button></td>
               </tr>
               <tr>
@@ -1484,7 +1484,7 @@
                 <td><span class="badge-status badge-progress">Corporate Family Office</span></td>
                 <td>$8,200,000</td>
                 <td>Dr. Rajesh Kumar</td>
-                <td><button class="btn btn-sm btn-outline" onclick="window.location.href='404.html'">Review
+                <td><button class="btn btn-sm btn-outline" onclick="goto404()">Review
                     Account</button></td>
               </tr>
               <tr>
@@ -1497,7 +1497,7 @@
                 <td><span class="badge-status badge-active">HNW Tier 1</span></td>
                 <td>$3,100,000</td>
                 <td>Ms. Priya Sen</td>
-                <td><button class="btn btn-sm btn-outline" onclick="window.location.href='404.html'">Review
+                <td><button class="btn btn-sm btn-outline" onclick="goto404()">Review
                     Account</button></td>
               </tr>
             </tbody>
@@ -1605,7 +1605,7 @@
                 <td>$25,000,000</td>
                 <td>Dr. Rajesh Kumar</td>
                 <td><span class="badge-status badge-active">Due Diligence</span></td>
-                <td><button class="btn btn-sm btn-primary" onclick="window.location.href='404.html'">Manage
+                <td><button class="btn btn-sm btn-primary" onclick="goto404()">Manage
                     Deal</button></td>
               </tr>
               <tr>
@@ -1614,7 +1614,7 @@
                 <td>$18,500,000</td>
                 <td>Ms. Priya Sen</td>
                 <td><span class="badge-status badge-progress">Structuring</span></td>
-                <td><button class="btn btn-sm btn-primary" onclick="window.location.href='404.html'">Manage
+                <td><button class="btn btn-sm btn-primary" onclick="goto404()">Manage
                     Deal</button></td>
               </tr>
               <tr>
@@ -1623,7 +1623,7 @@
                 <td>$32,000,000</td>
                 <td>Alexander Vance</td>
                 <td><span class="badge-status badge-done">Completed</span></td>
-                <td><button class="btn btn-sm btn-outline" onclick="window.location.href='404.html'">View
+                <td><button class="btn btn-sm btn-outline" onclick="goto404()">View
                     Summary</button></td>
               </tr>
             </tbody>
@@ -1710,7 +1710,7 @@
               type="email"></div>
           <div class="form-group"><label>Executive Role</label><input class="form-control"
               value="Managing Director & Head of Advisory" readonly type="text"></div>
-          <button class="btn btn-primary" onclick="window.location.href='404.html'">Save Credentials</button>
+          <button class="btn btn-primary" onclick="goto404()">Save Credentials</button>
         </div>
 
         <div class="settings-card">
@@ -1740,6 +1740,56 @@
     // Sidebar Toggle
     function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open') }
     function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open') }
+    
+    function resetToOverview(e) {
+      if (e) e.preventDefault();
+      sessionStorage.removeItem('dashboard_last_section');
+      sessionStorage.removeItem('dashboard_last_scroll');
+      sessionStorage.removeItem('dashboard_last_url');
+      showSection('dashboard');
+      window.scrollTo(0, 0);
+    }
+
+    function logoutDashboard() {
+      sessionStorage.removeItem('dashboard_last_section');
+      sessionStorage.removeItem('dashboard_last_scroll');
+      sessionStorage.removeItem('dashboard_last_url');
+      localStorage.removeItem('loggedInEmail');
+      localStorage.removeItem('loggedInName');
+      localStorage.removeItem('userRole');
+      window.location.href = 'login.html';
+    }
+    function saveCurrentState() {
+      var activeSec = document.querySelector('.section.active');
+      var secId = activeSec ? activeSec.id.replace('sec-', '') : 'dashboard';
+      var scrollY = Math.round(window.scrollY || window.pageYOffset || 0);
+
+      sessionStorage.setItem('dashboard_last_section', secId);
+      sessionStorage.setItem('dashboard_last_scroll', scrollY);
+
+      var pathName = window.location.pathname.split('/').pop() || 'admin-dashboard.html';
+      var cleanUrl = pathName + '#' + secId;
+      sessionStorage.setItem('dashboard_last_url', cleanUrl);
+    }
+
+    function goto404() {
+      saveCurrentState();
+      var activeSec = document.querySelector('.section.active');
+      var secId = activeSec ? activeSec.id.replace('sec-', '') : 'dashboard';
+      var scrollY = Math.round(window.scrollY || window.pageYOffset || 0);
+
+      var pathName = window.location.pathname.split('/').pop() || 'admin-dashboard.html';
+      var targetUrl = '404.html?from=' + encodeURIComponent(pathName + '#' + secId) + '&scrollY=' + scrollY;
+      window.location.href = targetUrl;
+    }
+
+    window.addEventListener('scroll', saveCurrentState);
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('a, button, [onclick], form')) {
+        saveCurrentState();
+      }
+    });
+    window.addEventListener('beforeunload', saveCurrentState);
 
     // Navigation
     var titles = {
@@ -1751,9 +1801,13 @@
       settings: 'Board Settings'
     };
 
-    function showSection(id, el) {
+    function showSection(id, el, preventScroll) {
       if (!id || !titles[id]) id = 'dashboard';
-      history.replaceState(null, null, '#' + id);
+
+      if (window.location.hash !== '#' + id) {
+        history.pushState(null, null, '#' + id);
+      }
+
       document.querySelectorAll('.section').forEach(function (s) { s.classList.remove('active') });
       document.querySelectorAll('.nav-item').forEach(function (n) { n.classList.remove('active') });
       var sec = document.getElementById('sec-' + id);
@@ -1768,7 +1822,12 @@
       var titleEl = document.getElementById('pageTitle');
       if (titleEl) titleEl.textContent = titles[id] || id;
       if (window.innerWidth <= 992) closeSidebar();
-      window.scrollTo(0, 0);
+
+      saveCurrentState();
+
+      if (!preventScroll) {
+        window.scrollTo(0, 0);
+      }
     }
 
     function filterTable(input, tableId) {
@@ -1914,9 +1973,44 @@
 
     // Hash Restoration & Section Active State Restoration
     function restoreActiveSection() {
-      var hash = window.location.hash.substring(1);
+      var urlParams = new URLSearchParams(window.location.search);
+      var restoreScrollParam = urlParams.get('restoreScroll');
+
+      var rawHash = window.location.hash.substring(1);
+      if (rawHash.includes('%23')) {
+        rawHash = rawHash.split('%23').pop();
+      }
+      if (rawHash.includes('?')) {
+        var parts = rawHash.split('?');
+        rawHash = parts[0];
+        if (!restoreScrollParam) {
+          var hParams = new URLSearchParams(parts[1]);
+          restoreScrollParam = hParams.get('restoreScroll');
+        }
+      }
+
+      var hash = rawHash;
+      if (!hash || !titles[hash]) {
+        hash = sessionStorage.getItem('dashboard_last_section');
+      }
+
       if (hash && titles[hash]) {
-        showSection(hash);
+        var savedScroll = restoreScrollParam !== null ? restoreScrollParam : sessionStorage.getItem('dashboard_last_scroll');
+        var shouldPreventScroll = savedScroll !== null && savedScroll !== undefined;
+
+        showSection(hash, null, shouldPreventScroll);
+
+        if (shouldPreventScroll) {
+          var targetScroll = parseInt(savedScroll, 10);
+          if (!isNaN(targetScroll) && targetScroll > 0) {
+            setTimeout(function () {
+              window.scrollTo({ top: targetScroll, behavior: 'instant' });
+            }, 30);
+            setTimeout(function () {
+              window.scrollTo({ top: targetScroll, behavior: 'instant' });
+            }, 150);
+          }
+        }
       } else {
         showSection('dashboard');
       }
